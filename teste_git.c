@@ -2,6 +2,7 @@
 
 int main(){
     char c;
+    printf("Ola Amandinha :)");
     printf("Dando certo?\n(Y/n)\n");
     c = getchar();
 
