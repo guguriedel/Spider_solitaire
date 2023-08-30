@@ -21,3 +21,5 @@ class Card:
         def shuffle(self):
             random.shuffle(self.cards)
 
+print("Hello Wolrd")
+
