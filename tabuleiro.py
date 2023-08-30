@@ -8,19 +8,19 @@ class Card:
         self.face_up = face_up
 
     def __str__(self):
-        return f"{self.valor}"
+        return f"{self.valor}" if self.face_up else "x"
     
 
 class Deck:
-    def __init__(self, num_decks=1):
-        self.valores = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+    def __init__(self):
+        self.valores = 8 * ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         self.cards = [Card(valor) for valor in self.valores]
         self.shuffle()
 
     def shuffle(self):
         random.shuffle(self.cards)
         
-    def mesa(self):
+    def mesa(self, face_up = False):
         #Colunas é como se fosse a mesa
         colunas = []
 
@@ -32,6 +32,7 @@ class Deck:
                 #Distribui 6 cartas
                 if self.cards:
                     card = self.cards.pop()
+                    card.face_up = face_up
                     coluna.append(card)
             colunas.append(coluna)
 
@@ -43,6 +44,7 @@ class Deck:
                 #Distribui 6 cartas
                 if self.cards:
                     card = self.cards.pop()
+                    card.face_up = face_up
                     coluna.append(card)
             colunas.append(coluna)
 
@@ -55,4 +57,9 @@ class Deck:
             if self.cards:
                 #Removo a carta adicionada para não haver repetições
                 card = self.cards.pop()
+                card.face_up = True
                 coluna.append(card)
+
+def imprime_tabuleiro(colunas):
+    for i, coluna in enumerate(colunas, start=1):
+        print(f"Coluna {i}: {[str(card) for card in coluna]}")
