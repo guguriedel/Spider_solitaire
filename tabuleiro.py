@@ -1,21 +1,8 @@
+from Deck import *
 from Partida import *
 
+#Função que move as cartas de uma coluna para outra
+def mov_cartas():
+    return
 
-
-
-
-#Inicia o switch
-x = 0
-'''
-Aqui está o modelo do Switch que será usado no jogo
-while x != 'Fim':
-    print("Insira a sua jogada desejada:")
-    
-    x = input()
-    if (x == 'm'):
-        deck.monte(colunas)
-    if(check_x()):
-'''
-
-#deck.monte(colunas)
-#imprime_tabuleiro(colunas)
+#...
