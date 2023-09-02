@@ -1,14 +1,13 @@
 from Partida import *
 
-inicia_jogo(Deck())
+
+deck = Deck()
+colunas = inicia_jogo(deck)
 
 
 
-'''
+
 while True:
     x = input("Insira sua jogada:\n")
-    if x == :
-        mov_
-
-
-'''
+    jogadas(x, deck, colunas)
+    

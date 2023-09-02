@@ -60,6 +60,5 @@ class Deck:
                 card.face_up = True
                 coluna.append(card)
 
-def imprime_tabuleiro(colunas):
-    for i, coluna in enumerate(colunas, start=1):
-        print(f"Coluna {i}: {[str(card) for card in coluna]}")
+    def monte_null(self):
+        return len(self.cards) == 0
