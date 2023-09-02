@@ -5,4 +5,7 @@ from Partida import *
 def mov_cartas():
     return
 
-#...
+#Função que move as coluna para o topo
+def coluna_completa():
+    return
+
