@@ -1,9 +1,7 @@
 from Deck import *
 from Tabuleiro import *
 
-def imprime_tabuleiro(colunas):
-    for i, coluna in enumerate(colunas, start=1):
-        print(f"Coluna {i}: {[str(card) for card in coluna]}")
+
 
 def inicia_jogo(deck):
     #Cria as colunas e distribui as cartas
