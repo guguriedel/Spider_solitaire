@@ -1,6 +1,5 @@
 from Deck import *
 from Partida import *
-from Partida import mov_check
 
 def imprime_tabuleiro(colunas):
     for i, coluna in enumerate(colunas, start=1):

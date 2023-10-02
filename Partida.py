@@ -1,6 +1,5 @@
 from Deck import *
-from Tabuleiro import imprime_tabuleiro
-from Tabuleiro import *
+from tabuleiro import *
 
 
 
@@ -15,9 +14,8 @@ def inicia_jogo(deck):
 
     #Imprime as Instruções
     print("Instruções:")
-    print("Para mover cartas de uma coluna para outra digite o numero da coluna e depois o numero da carta")
-    print("por fim digite o numero da coluna destino")
-    print("Caso queira pegar cartas do monte digite 'm'")
+    print("Para mover cartas de uma coluna para outra digite mover")
+    print("Caso queira pegar cartas do monte digite monte")
 
     #Imprime a mesa
     imprime_tabuleiro(colunas)
