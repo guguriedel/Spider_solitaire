@@ -1,4 +1,5 @@
 from Deck import *
+from Tabuleiro import imprime_tabuleiro
 from Tabuleiro import *
 
 
@@ -31,13 +32,43 @@ def jogadas(x, deck, colunas):
             return
         else:
             deck.monte(colunas)
+            
+    if x == "mover":
+        colunaAtual = int(input("Qual coluna você deseja mexer?\n"))
+        carta = input("A partir de qual carta você deseja pegar?\n")
+        proximaColuna = int(input("Para qual coluna você deseja mover?\n"))
+        mov_cartas(colunaAtual, carta, proximaColuna, colunas)
+        
     imprime_tabuleiro(colunas)
 
 #Ve se a coluna que recebeu cartas pode receber essas cartas
 #Verifica se a carta de cima é antecessora da debaixo
 #Retorna bool
-def mov_check():
-    return
+def mov_check(colunaA, cartas, pColuna):
+    reais = ["J","Q","K"]
+    
+    if(pColuna[-1] in reais and cartas[0] in reais):
+        vAtribuidoPColuna = reais.index(pColuna[-1])+11
+        vAtribuidoCartas = reais.index(cartas[0])+11
+        if(vAtribuidoPColuna>vAtribuidoCartas):
+            return True
+        
+    elif(pColuna[-1] in reais and cartas[0] not in reais):
+        return True
+    
+    elif(pColuna[-1] not in reais and cartas[0] not in reais):
+        if(pColuna[-1] == 'A' or cartas[0] == 'A'):
+            if (cartas[0] == 'A' and pColuna[-1] != 'A'):
+                return True
+            else:
+                return False
+                
+        elif(int(pColuna[-1]) > int(cartas[0])):
+            return True
+    
+    else:
+        return False
+
 
 #Confere se a carta pode ser movimentada
 #Ou seja, se não há cartas fora de ordem debaixo dela
