@@ -1,9 +1,20 @@
-from Deck import *
 from Partida import *
 
+
 def imprime_tabuleiro(colunas):
-    for i, coluna in enumerate(colunas, start=1):
-        print(f"Coluna {i}: {[str(card) for card in coluna]}")
+    for i, coluna in enumerate(colunas, 1):
+        print(f'Coluna {i}: ', end='')
+
+        for carta in coluna:
+            valor_carta = carta["valor"]
+            face_up = carta["Face_Up"]
+
+            if face_up:
+                print(f'{valor_carta} ', end='')
+            else:
+                print('X ', end='')
+
+        print()
 
 #Função que move as cartas de uma coluna para outra
 def mov_cartas( colunaAtual, carta, proximaColuna, colunas):
@@ -27,6 +38,7 @@ def mov_cartas( colunaAtual, carta, proximaColuna, colunas):
         print("Não foi possível fazer essa movimentação\n")
     
     return
+
 #Função que move as coluna para o topo
 def coluna_completa():
     return

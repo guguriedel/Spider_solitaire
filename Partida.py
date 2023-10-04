@@ -1,18 +1,27 @@
 from Deck import *
-from tabuleiro import *
+from Tabuleiro import *
 
 
 
-def inicia_jogo(deck):
-    #Cria as colunas e distribui as cartas
-    colunas = deck.mesa(face_up=False)
+def inicia_jogo(baralho):
+
+    #Cria 10 colunas
+    colunas = [[] for coluna in range(10)]
+
+    #Distribui 4 primeiras colunas com 6 cartas
+    for coluna in colunas[:4]:
+        coluna.extend(baralho.pop() for _ in range(6))
+
+    #Distribui 6 colunas com 5 cartas
+    for coluna in colunas[4:]:
+        coluna.extend(baralho.pop() for _ in range(5))
 
     #Vira a ultima carta para cima
     for coluna in colunas:
         if coluna:
-            coluna[-1].face_up = True
+            coluna[-1]['Face_Up'] = True
 
-    #Imprime as Instruções
+    
     print("Instruções:")
     print("Para mover cartas de uma coluna para outra digite mover")
     print("Caso queira pegar cartas do monte digite monte")
@@ -20,6 +29,7 @@ def inicia_jogo(deck):
     #Imprime a mesa
     imprime_tabuleiro(colunas)
     return colunas
+
 
 
 #Define as condicionais de cada jogada
@@ -37,7 +47,6 @@ def jogadas(x, deck, colunas):
         proximaColuna = int(input("Para qual coluna você deseja mover?\n"))
         mov_cartas(colunaAtual, carta, proximaColuna, colunas)
         
-    imprime_tabuleiro(colunas)
 
 #Ve se a coluna que recebeu cartas pode receber essas cartas
 #Verifica se a carta de cima é antecessora da debaixo
