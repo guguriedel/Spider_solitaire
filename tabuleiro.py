@@ -16,6 +16,11 @@ def imprime_tabuleiro(colunas):
 
         print()
 
+def monte(colunas, baralho):
+    for coluna in colunas:
+        if baralho:
+            coluna.append(baralho.pop)
+
 #Função que move as cartas de uma coluna para outra
 def mov_cartas( colunaAtual, carta, proximaColuna, colunas):
     

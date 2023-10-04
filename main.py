@@ -2,8 +2,8 @@ from Partida import *
 
 
 
-
-colunas = inicia_jogo(baralho())
+baralho = baralho()
+colunas = inicia_jogo(baralho)
 
 
 while True:

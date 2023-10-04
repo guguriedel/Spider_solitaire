@@ -33,19 +33,21 @@ def inicia_jogo(baralho):
 
 
 #Define as condicionais de cada jogada
-def jogadas(x, deck, colunas):
-    if x == 'm':
-        if deck.monte_null():
+def jogadas(x, baralho, colunas):
+    if x == 'monte':
+        if baralho == None:
             print("Monte não tem mais cartas\n")
             return
         else:
-            deck.monte(colunas)
+            monte(colunas, baralho)
             
     if x == "mover":
         colunaAtual = int(input("Qual coluna você deseja mexer?\n"))
         carta = input("A partir de qual carta você deseja pegar?\n")
         proximaColuna = int(input("Para qual coluna você deseja mover?\n"))
         mov_cartas(colunaAtual, carta, proximaColuna, colunas)
+
+    imprime_tabuleiro(colunas)
         
 
 #Ve se a coluna que recebeu cartas pode receber essas cartas
