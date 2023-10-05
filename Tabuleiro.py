@@ -20,6 +20,9 @@ def monte(colunas, baralho):
     for coluna in colunas:
         if baralho:
             coluna.append(baralho.pop)
+        else:
+            print("Monte sem cartas")
+            exit(1)
 
 #Função que move as cartas de uma coluna para outra
 def mov_cartas( colunaAtual, carta, proximaColuna, colunas):
