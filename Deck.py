@@ -13,7 +13,7 @@ def baralho():
         carta = {'valor': valor, 'Face_Up': False}
         baralho.append(carta)
 
-    #print(num_cartas)
+    print(num_cartas)
     return embaralhar(baralho)
 
 
