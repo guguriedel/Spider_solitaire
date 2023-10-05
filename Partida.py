@@ -1,9 +1,10 @@
-from Deck import *
-from Tabuleiro import *
+import Deck
+import Tabuleiro
 
 
 
-def inicia_jogo(baralho):
+def inicia_jogo():
+    baralho = Deck.baralho()
 
     #Cria 10 colunas
     colunas = [[] for coluna in range(10)]
@@ -27,27 +28,27 @@ def inicia_jogo(baralho):
     print("Caso queira pegar cartas do monte digite monte")
 
     #Imprime a mesa
-    imprime_tabuleiro(colunas)
-    return colunas
+    Tabuleiro.imprime_tabuleiro(colunas)
+    return baralho, colunas
 
 
 
 #Define as condicionais de cada jogada
 def jogadas(x, baralho, colunas):
-    if x == 'monte':
+    if x == '+':
         if baralho == None:
             print("Monte não tem mais cartas\n")
             return
         else:
-            monte(colunas, baralho)
+            Tabuleiro.monte(colunas, baralho)
             
     if x == "mover":
         colunaAtual = int(input("Qual coluna você deseja mexer?\n"))
         carta = input("A partir de qual carta você deseja pegar?\n")
         proximaColuna = int(input("Para qual coluna você deseja mover?\n"))
-        mov_cartas(colunaAtual, carta, proximaColuna, colunas)
+        Tabuleiro.mov_cartas(colunaAtual, carta, proximaColuna, colunas)
 
-    imprime_tabuleiro(colunas)
+    Tabuleiro.imprime_tabuleiro(colunas)
         
 
 #Ve se a coluna que recebeu cartas pode receber essas cartas

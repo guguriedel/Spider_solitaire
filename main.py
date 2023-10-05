@@ -1,11 +1,12 @@
-from Partida import *
+import Partida
 
 
 
-baralho = baralho()
-colunas = inicia_jogo(baralho)
+
+
+baralho, colunas = Partida.inicia_jogo()
 
 
 while True:
    x = input("Insira sua jogada:\n")
-   jogadas(x, baralho, colunas)
+   Partida.jogadas(x, baralho, colunas)
