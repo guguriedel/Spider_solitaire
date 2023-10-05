@@ -26,8 +26,8 @@ def monte(colunas, baralho):
             carta = baralho.pop()
             coluna.append(carta)
             carta['Face_Up'] = True
-        else:
-            print('Baralho não tem mais cartas')
+        #else:
+            #print('Baralho não tem mais cartas')
 
 #Função que move as cartas de uma coluna para outra
 def mov_cartas( colunaAtual, carta, proximaColuna, colunas):
