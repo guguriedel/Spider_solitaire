@@ -35,6 +35,9 @@ def inicia_jogo():
 
 #Define as condicionais de cada jogada
 def jogadas(x, baralho, colunas):
+    if x == 'para':
+        print("O jogo foi interrompido\n")
+        exit(1)
     if x == 'monte' or x == '+':
         if not baralho:
             print("Monte não tem mais cartas")
