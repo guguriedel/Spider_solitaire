@@ -31,23 +31,21 @@ def monte(colunas, baralho):
 
 #Função que move as cartas de uma coluna para outra
 def mov_cartas( colunaAtual, carta_origem, proximaColuna, colunas):
+    indices = [i for i, carta in enumerate(colunas[colunaAtual]) if carta['Face_Up'] and carta['valor'] == carta_origem]
 
-    carta_index = -1
-    for i, carta in enumerate(colunas[colunaAtual]):
-        if carta['Face_Up'] and carta['valor'] == carta_origem:
-            carta_index = i
-            break
-
-    if carta_index == -1:
-        print("Carta de origem não encontrada ou virada para baixo. Tente novamente.")
+    if not indices:
+        print('Carta n encontrada')
         return
-    
+    carta_index = indices[-1]
+
     cartas_movidas = colunas[colunaAtual][carta_index:]
     colunas[proximaColuna].extend(cartas_movidas)
     colunas[colunaAtual] = colunas[colunaAtual][:carta_index]
 
     if colunas[colunaAtual]:
         colunas[colunaAtual][-1]['Face_Up'] = True
+
+    return
 
 #Função que move as coluna para o topo
 def coluna_completa():
