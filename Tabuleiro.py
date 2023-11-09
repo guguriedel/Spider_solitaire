@@ -30,27 +30,24 @@ def monte(colunas, baralho):
             #print('Baralho não tem mais cartas')
 
 #Função que move as cartas de uma coluna para outra
-def mov_cartas( colunaAtual, carta, proximaColuna, colunas):
+def mov_cartas( colunaAtual, carta_origem, proximaColuna, colunas):
+
+    carta_index = -1
+    for i, carta in enumerate(colunas[colunaAtual]):
+        if carta['Face_Up'] and carta['valor'] == carta_origem:
+            carta_index = i
+            break
+
+    if carta_index == -1:
+        print("Carta de origem não encontrada ou virada para baixo. Tente novamente.")
+        return
     
-    print(colunas[colunaAtual-1])
-    print(colunas[colunaAtual-1][-1])
-    print(type(colunas[colunaAtual-1][-1]))
-    
-    index = colunas[colunaAtual-1].index(carta)
-    print(index)
-    
-    cartasMovidas = colunas[colunaAtual-1][index:]
-    print(cartasMovidas)
-    
-    movcheck = Partida.mov_check(colunaAtual, cartasMovidas, proximaColuna)
-    if movcheck == True:
-        colunas[colunaAtual].append(cartasMovidas)
-        for el in cartasMovidas:
-            colunas[colunaAtual-1].remove(el)
-    else:
-        print("Não foi possível fazer essa movimentação\n")
-    
-    return
+    cartas_movidas = colunas[colunaAtual][carta_index:]
+    colunas[proximaColuna].extend(cartas_movidas)
+    colunas[colunaAtual] = colunas[colunaAtual][:carta_index]
+
+    if colunas[colunaAtual]:
+        colunas[colunaAtual][-1]['Face_Up'] = True
 
 #Função que move as coluna para o topo
 def coluna_completa():

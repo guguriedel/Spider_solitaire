@@ -89,8 +89,21 @@ def retira_check():
     return
 
 #Verifica se a coluna que recebeu cartas tem 14 cartas ordenadas de K até A
-def completa_check():
-    return
+def completa_check(coluna):
+    if not coluna:
+        return False
+
+    valores_validos = ['K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2', 'A']
+
+    # Filtra apenas as cartas viradas para cima
+    cartas_viradas_para_cima = [carta for carta in coluna if carta['Face_Up']]
+
+    # Verifica se as cartas viradas para cima estão em ordem decrescente de K até A
+    for i, carta in enumerate(cartas_viradas_para_cima):
+        if carta['valor'] != valores_validos[i]:
+            return False
+
+    return True
 
 #Função que verifica se o jogador ganhou
 def vitoria_check():
