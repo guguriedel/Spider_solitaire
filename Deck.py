@@ -22,5 +22,25 @@ def embaralhar(baralho):
     random.shuffle(baralho)
     return baralho
 
+def mudaVal(n):
+    if n == 'J':
+        n = 11
+    if n == 'Q':
+        n = 12
+    if n == 'K':
+        n = 13
+    if n == 'A':
+        n = 1
+    return int(n)
+
+def sucessor(n1, n2): #n1 = 8 n2 = 7
+    val1 = mudaVal(n1['valor'])
+    val2 = mudaVal(n2['valor'])
+
+    print(n1, n2)
+    print(val1, val2)
+
+    return val1 == val2 + 1
+
 
     

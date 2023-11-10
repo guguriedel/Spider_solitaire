@@ -42,6 +42,7 @@ def mov_cartas( colunaAtual, carta_origem, proximaColuna, colunas):
     colunas[proximaColuna].extend(cartas_movidas)
     colunas[colunaAtual] = colunas[colunaAtual][:carta_index]
 
+    #Tendo cartas na coluna que perdeu cartas, virá essa carta pra cima
     if colunas[colunaAtual]:
         colunas[colunaAtual][-1]['Face_Up'] = True
 
