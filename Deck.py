@@ -33,12 +33,10 @@ def mudaVal(n):
         n = 1
     return int(n)
 
-def sucessor(n1, n2): #n1 = 8 n2 = 7
+def sucessor(n1, n2):
     val1 = mudaVal(n1['valor'])
     val2 = mudaVal(n2['valor'])
 
-    print(n1, n2)
-    print(val1, val2)
 
     return val1 == val2 + 1
 

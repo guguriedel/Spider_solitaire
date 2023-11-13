@@ -1,7 +1,7 @@
 import Partida
 
 
-baralho, colunas = Partida.inicia_jogo()
+baralho, colunas, cont = Partida.inicia_jogo()
 
 
 while True:
@@ -9,4 +9,8 @@ while True:
    x = x.lower()
 
    
-   Partida.jogadas(x, baralho, colunas)
+   cont = Partida.jogadas(x, baralho, colunas, cont)
+   print('Colunas Completas:', cont)
+   if Partida.vitoria_check(cont):
+      print('Você venceu!')
+      break

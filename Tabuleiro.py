@@ -31,11 +31,10 @@ def monte(colunas, baralho):
 
 #Função que move as cartas de uma coluna para outra
 def mov_cartas( colunaAtual, carta_origem, proximaColuna, colunas):
+    #Mapeia ocorrencias da carta na coluna
     indices = [i for i, carta in enumerate(colunas[colunaAtual]) if carta['Face_Up'] and carta['valor'] == carta_origem]
 
-    if not indices:
-        print('Carta n encontrada')
-        return
+    #Pega a última ocorrência
     carta_index = indices[-1]
 
     cartas_movidas = colunas[colunaAtual][carta_index:]
@@ -49,6 +48,9 @@ def mov_cartas( colunaAtual, carta_origem, proximaColuna, colunas):
     return
 
 #Função que move as coluna para o topo
-def coluna_completa():
-    return
+def coluna_completa(coluna, colunas, cont):
+    cont+=1
+    sequencia = []
+    mov_cartas(coluna, 'K', sequencia, colunas)
+    return cont
 
