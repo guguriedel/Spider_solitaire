@@ -41,4 +41,6 @@ def sucessor(n1, n2):
     return val1 == val2 + 1
 
 
+
+
     

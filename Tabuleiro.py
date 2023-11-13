@@ -54,3 +54,5 @@ def coluna_completa(coluna, colunas, cont):
     mov_cartas(coluna, 'K', sequencia, colunas)
     return cont
 
+
+

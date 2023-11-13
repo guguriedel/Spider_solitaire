@@ -12,3 +12,11 @@ for valor in valores:
         baralho.append(carta)
 
 print(Partida.completa_check(baralho))
+
+
+x = ''
+
+if not x and x != 0:
+        print("aqui")
+else:
+        print('embaixo')

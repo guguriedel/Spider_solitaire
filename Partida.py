@@ -56,74 +56,93 @@ def jogadas(x, baralho, colunas, cont):
 
     #Chama função para mover de uma coluna para outra        
     elif x == "mover" or x == 'move':
-        colunaAtual = int(input("Qual coluna você deseja mexer?\n"))
+        colunaAtual = ver_int(input("Qual coluna você deseja mexer?\n"))
         carta = input("A partir de qual carta você deseja pegar?\n").upper()
-        proximaColuna = int(input("Para qual coluna você deseja mover?\n"))
-        mov_check(colunaAtual, carta, proximaColuna, colunas)
-        if completa_check(colunas[proximaColuna]):
-            cont = Tabuleiro.coluna_completa(colunas[proximaColuna], colunas, cont)
+        proximaColuna = ver_int(input("Para qual coluna você deseja mover?\n"))
+
+        if mov_check(colunaAtual, carta, proximaColuna, colunas):
+            #Se a coluna está completa - move ela pro cont
+            if completa_check(colunas[proximaColuna]):
+                cont = Tabuleiro.coluna_completa(colunas[proximaColuna], colunas, cont)
 
 
     #Exclui a necessidade de digitar o comando mover, basta digitar a col inicial
-    elif int(x) in range(0,10):
-        colunaAtual = int(x)
+    elif ver_int(x) in range(0,10):
+        colunaAtual = ver_int(x)
         carta = input("A partir de qual carta você deseja pegar?\n").upper()
-        proximaColuna = int(input("Para qual coluna você deseja mover?\n"))
-        mov_check(colunaAtual, carta, proximaColuna, colunas)
-        #Se a coluna está completa - move ela pro cont
-        if completa_check(colunas[proximaColuna]):
-            cont = Tabuleiro.coluna_completa(colunas[proximaColuna], colunas, cont)
+        proximaColuna = ver_int(input("Para qual coluna você deseja mover?\n"))
+        
+        if mov_check(colunaAtual, carta, proximaColuna, colunas):
+            #Se a coluna está completa - move ela pro cont
+            if completa_check(colunas[proximaColuna]):
+                cont = Tabuleiro.coluna_completa(colunas[proximaColuna], colunas, cont)
+
     else:
         print('Comando não reconhecido')
 
     Tabuleiro.imprime_tabuleiro(colunas)
     return cont
-        
+
 
 #Ve se a coluna que recebeu cartas pode receber essas cartas
 #Ja executa a movimentação
 #Para maior coesão a função poderia ter sido dividida em outras funções
 def mov_check(colunaAtual, cartas_origem, proximaColuna, colunas):
-    #Verifica se coluna existe
-    if (colunaAtual < 0 or colunaAtual > 10) or (proximaColuna < 0 or proximaColuna > 10):
-        print("Colunas Inválidas.")
-        return
-    
-    #Verifica se a coluna tem cartas
-    elif not colunas[colunaAtual]:
-        print("Coluna de Origem Vazia")
-        return
-    
-    #conferir se a coluna contém a carta:
-    
+    if not colunaAtual and colunaAtual != 0:
+        print("Preencha todos os campos para realizar o movimento.")
+        return False
+    if not cartas_origem and cartas_origem != 0:
+        print("Preencha todos os campos para realizar o movimento.")
+        return False
+    if not proximaColuna and proximaColuna != 0:
+        print("Preencha todos os campos para realizar o movimento.")
+        return False
+
     #Mapeia ocorrencias da carta na coluna
     indices = [i for i, carta in enumerate(colunas[colunaAtual]) if carta['Face_Up'] and carta['valor'] == cartas_origem]
 
-    #Pega a última ocorrência
-    index_carta = indices[-1]
+    #Verifica se coluna existe
+    if (colunaAtual < 0 or colunaAtual >= 10):
+        print("Colunas Inválidas.")
+        return False
+    elif (proximaColuna < 0 or proximaColuna >= 10):
+        print("Colunas Inválidas.")
+        return False
+     
+    #Verifica se a coluna tem cartas
+    elif not colunas[colunaAtual]:
+        print("Coluna de Origem Vazia")
+        return False
+    
+
+    #Pega a última ocorrência se houverem cartas
+    if indices:
+        index_carta = indices[-1]
+    else:
+        print("Carta %s não encontrada." %cartas_origem)
+        return False
     
     #Cartas formam sequência?
     for i in range(index_carta, len(colunas[colunaAtual]) - 1):
         if not Deck.sucessor(colunas[colunaAtual][i], colunas[colunaAtual][i+1]):
             print("As cartas selecionadas não formam uma sequência")
-            return
+            return False
         
     #Se a coluna que recebe as cartas está vázia, podemos mover qualquer carta 
     if not colunas[proximaColuna]:
         Tabuleiro.mov_cartas(colunaAtual, cartas_origem, proximaColuna, colunas)
-        return
+        return False
 
         
     #Conferir se a coluna recebe a carta sucessora ao ultimo valor da coluna
     elif not Deck.sucessor(colunas[proximaColuna][-1], colunas[colunaAtual][index_carta]):
         print("A carta não forma sequência com a última carta da coluna destino")
-        return
+        return False
     
     else:
         #Todas condições foram atendidas. Pode mover!
         Tabuleiro.mov_cartas(colunaAtual, cartas_origem, proximaColuna, colunas)
-        
-    return
+        return True
 
 
 
@@ -152,11 +171,18 @@ def vitoria_check(cont):
         return False
     
 
-        """index_carta = -1
-    for i, carta in enumerate(colunas[colunaAtual]):
-        if carta['Face_Up'] and carta['valor'] == cartas_origem:
-            index_carta = i
-            break
-    if index_carta == -1:
-        print('Carta não encontrada na coluna ', colunaAtual)
-        return"""
+    """index_carta = -1
+for i, carta in enumerate(colunas[colunaAtual]):
+    if carta['Face_Up'] and carta['valor'] == cartas_origem:
+        index_carta = i
+        break
+if index_carta == -1:
+    print('Carta não encontrada na coluna ', colunaAtual)
+    return"""
+
+def ver_int(x):
+    try:
+        return int(x)
+    except ValueError:
+        print("Entrada não preenchida corretamente!")
+        return None
