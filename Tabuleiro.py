@@ -47,12 +47,26 @@ def mov_cartas( colunaAtual, carta_origem, proximaColuna, colunas):
 
     return
 
-#Função que move as coluna para o topo
-def coluna_completa(coluna, colunas, cont):
-    cont+=1
+#Função que move a coluna para o topo
+def coluna_completa(coluna_index, colunas, cont):
     sequencia = []
-    mov_cartas(coluna, 'K', sequencia, colunas)
-    return cont
+    
+    #Encontra a Sequência
+    for carta in colunas[coluna_index][::-1]:
+        sequencia.insert(0, carta)
+        if carta['valor'] == '':
+            break
+    print(f"Sequência encontrada: {[carta['valor'] for carta in sequencia]}")
+    
+    for carta in sequencia:
+        colunas[coluna_index].remove(carta)
+    
+    print("Coluna após remoção da sequência:")
+    for carta in colunas[coluna_index]:
+        print(carta['valor'], end=' ')
+    print()
+    
+    return cont+1
 
 
 

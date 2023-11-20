@@ -24,8 +24,9 @@ def inicia_jogo():
 
     
     print("Instruções:")
-    print("Para mover cartas de uma coluna para outra digite mover")
-    print("Caso queira pegar cartas do monte digite monte")
+    print("Para mover cartas de uma coluna para outra digite mover ou o numero da coluna que deseja mover.")
+    print("Caso queira pegar cartas do monte digite monte ou '+'")
+    x = input("Aperte 'Enter' para iniciar o jogo.")
 
     #Imprime a mesa
     Tabuleiro.imprime_tabuleiro(colunas)
@@ -52,7 +53,7 @@ def jogadas(x, baralho, colunas, cont):
             #Checa se em alguma das 10 colunas temos uma sequencia de K-A
             for i in range(0,9):
                if completa_check(colunas[i]):
-                   cont = Tabuleiro.coluna_completa(colunas[i], colunas, cont)
+                   cont = Tabuleiro.coluna_completa(i, colunas, cont)
 
     #Chama função para mover de uma coluna para outra        
     elif x == "mover" or x == 'move':
@@ -63,7 +64,7 @@ def jogadas(x, baralho, colunas, cont):
         if mov_check(colunaAtual, carta, proximaColuna, colunas):
             #Se a coluna está completa - move ela pro cont
             if completa_check(colunas[proximaColuna]):
-                cont = Tabuleiro.coluna_completa(colunas[proximaColuna], colunas, cont)
+                cont = Tabuleiro.coluna_completa(proximaColuna, colunas, cont)
 
 
     #Exclui a necessidade de digitar o comando mover, basta digitar a col inicial
@@ -75,7 +76,7 @@ def jogadas(x, baralho, colunas, cont):
         if mov_check(colunaAtual, carta, proximaColuna, colunas):
             #Se a coluna está completa - move ela pro cont
             if completa_check(colunas[proximaColuna]):
-                cont = Tabuleiro.coluna_completa(colunas[proximaColuna], colunas, cont)
+                cont = Tabuleiro.coluna_completa(proximaColuna, colunas, cont)
 
     else:
         print('Comando não reconhecido')
@@ -88,6 +89,7 @@ def jogadas(x, baralho, colunas, cont):
 #Ja executa a movimentação
 #Para maior coesão a função poderia ter sido dividida em outras funções
 def mov_check(colunaAtual, cartas_origem, proximaColuna, colunas):
+    #Identifica se alguma das entradas é nula
     if not colunaAtual and colunaAtual != 0:
         print("Preencha todos os campos para realizar o movimento.")
         return False
@@ -116,7 +118,7 @@ def mov_check(colunaAtual, cartas_origem, proximaColuna, colunas):
     
 
     #Pega a última ocorrência se houverem cartas
-    if indices:
+    elif indices:
         index_carta = indices[-1]
     else:
         print("Carta %s não encontrada." %cartas_origem)
@@ -146,7 +148,8 @@ def mov_check(colunaAtual, cartas_origem, proximaColuna, colunas):
 
 
 
-#Verifica se a coluna que recebeu cartas tem 14 cartas ordenadas de K até A
+#Verifica se a coluna que recebeu cartas tem 14 cartas ordenadas de K a
+
 def completa_check(coluna):
     #Não precisamos de um caso coluna vazia pois essa função
     #Só é chamada ao receber cartas (Hipotese)
@@ -160,6 +163,7 @@ def completa_check(coluna):
     valores_cartas = [carta['valor'] for carta in cartas_viradas_para_cima]
 
 
+
     return valores_cartas == valores_validos
 
 #Função que verifica se o jogador ganhou
@@ -171,7 +175,14 @@ def vitoria_check(cont):
         return False
     
 
-    """index_carta = -1
+def ver_int(x):
+    try:
+        return int(x)
+    except ValueError:
+        print("Entrada não preenchida corretamente!")
+        return None
+        
+"""index_carta = -1
 for i, carta in enumerate(colunas[colunaAtual]):
     if carta['Face_Up'] and carta['valor'] == cartas_origem:
         index_carta = i
@@ -179,10 +190,3 @@ for i, carta in enumerate(colunas[colunaAtual]):
 if index_carta == -1:
     print('Carta não encontrada na coluna ', colunaAtual)
     return"""
-
-def ver_int(x):
-    try:
-        return int(x)
-    except ValueError:
-        print("Entrada não preenchida corretamente!")
-        return None
