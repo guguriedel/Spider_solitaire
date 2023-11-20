@@ -50,21 +50,18 @@ def mov_cartas( colunaAtual, carta_origem, proximaColuna, colunas):
 #Função que move a coluna para o topo
 def coluna_completa(coluna_index, colunas, cont):
     sequencia = []
+    lista = ['K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2', 'A']
+
+
+    #Cria uma sequencia modelos
+    for valor in lista:
+        carta = {'valor': valor, 'Face_Up': True}
+        sequencia.append(carta)
     
-    #Encontra a Sequência
-    for carta in colunas[coluna_index][::-1]:
-        sequencia.insert(0, carta)
-        if carta['valor'] == '':
-            break
-    print(f"Sequência encontrada: {[carta['valor'] for carta in sequencia]}")
-    
+    #Remove essa sequencia modelo da lista
     for carta in sequencia:
         colunas[coluna_index].remove(carta)
     
-    print("Coluna após remoção da sequência:")
-    for carta in colunas[coluna_index]:
-        print(carta['valor'], end=' ')
-    print()
     
     return cont+1
 

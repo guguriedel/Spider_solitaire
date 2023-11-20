@@ -10,11 +10,11 @@ def baralho():
     # Adiciona 104 cartas viradas para cima
     for valor in valores:
         num_cartas+=1
-        carta = {'valor': valor, 'Face_Up': False}
+        carta = {'valor': valor, 'Face_Up': True}
         baralho.append(carta)
 
-    #print(num_cartas)
-    return embaralhar(baralho)
+    print(num_cartas)
+    return baralho#embaralhar(baralho)
 
 
 

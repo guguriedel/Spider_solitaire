@@ -46,7 +46,7 @@ def jogadas(x, baralho, colunas, cont):
         #Baralho sem cartas
         if not baralho:
             print("Monte não tem mais cartas")
-            return
+            return cont
         else:
             #Bota uma carta do monte em cada coluna
             Tabuleiro.monte(colunas, baralho)
@@ -157,14 +157,17 @@ def completa_check(coluna):
     valores_validos = ['K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2', 'A']
 
     # Filtra apenas as cartas viradas para cima
-    cartas_viradas_para_cima = [carta for carta in coluna if carta['Face_Up']]
+    cartas_viradas_para_cima = [carta['valor'] for carta in coluna if carta['Face_Up']]
 
-    # Verifica se as cartas viradas para cima estão em ordem decrescente de K até A
-    valores_cartas = [carta['valor'] for carta in cartas_viradas_para_cima]
+      # Percorre a lista de valores do baralho
+    for i in range(len(cartas_viradas_para_cima) - len(valores_validos) + 1):
+        # Verifica se a subsequência do baralho é igual à sequência desejada
+        if cartas_viradas_para_cima[i:i+len(valores_validos)] == valores_validos:
+            return True
+    # Se a sequência não for encontrada, retorna False
+    return False
 
 
-
-    return valores_cartas == valores_validos
 
 #Função que verifica se o jogador ganhou
 def vitoria_check(cont):
