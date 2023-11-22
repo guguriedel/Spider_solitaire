@@ -184,12 +184,3 @@ def ver_int(x):
     except ValueError:
         print("Entrada não preenchida corretamente!")
         return None
-        
-"""index_carta = -1
-for i, carta in enumerate(colunas[colunaAtual]):
-    if carta['Face_Up'] and carta['valor'] == cartas_origem:
-        index_carta = i
-        break
-if index_carta == -1:
-    print('Carta não encontrada na coluna ', colunaAtual)
-    return"""
