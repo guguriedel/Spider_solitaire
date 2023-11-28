@@ -1,20 +1,27 @@
 import random
+import Modulo_reutilizavel_lista
 
 #Classe de Carta
 
-def baralho():
-    valores = 8 * ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+def baralho(n):
+    valores = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+    valores = Modulo_reutilizavel_lista.mult_list(8, valores)
     num_cartas = 0
-    baralho = []
+    baralho = Modulo_reutilizavel_lista.criar_lista()
 
     # Adiciona 104 cartas viradas para cima
     for valor in valores:
         num_cartas+=1
-        carta = {'valor': valor, 'Face_Up': False}
-        baralho.append(carta)
+        carta = {'valor': valor, 'Face_Up': n}
+        Modulo_reutilizavel_lista.adicionar_elemento(baralho, carta)
+        #baralho.append(carta)
 
     #print(num_cartas)
-    return embaralhar(baralho)
+
+    if n == 0:
+        return embaralhar(baralho)
+    else:
+        return baralho
 
 
 

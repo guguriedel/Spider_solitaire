@@ -3,14 +3,16 @@ import Tabuleiro
 
 
 
-def inicia_jogo():
-    baralho = Deck.baralho()
+def inicia_jogo(n):
+    baralho = Deck.baralho(n)
 
     #Cria 10 colunas
     colunas = [[] for coluna in range(10)]
 
     #Distribui 4 primeiras colunas com 6 cartas
     for coluna in colunas[:4]:
+        #Não podemos usar o modulo de lista pois estamos falando do ultimo elem 
+        #e nao de um elem especifico
         coluna.extend(baralho.pop() for _ in range(6))
 
     #Distribui 6 colunas com 5 cartas

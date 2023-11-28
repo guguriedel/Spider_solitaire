@@ -1,9 +1,8 @@
 import Partida
 
+n = 0
 
-
-
-baralho, colunas, cont = Partida.inicia_jogo()
+baralho, colunas, cont = Partida.inicia_jogo(n)
 
 
 while True:

@@ -2,7 +2,7 @@ import Partida
 import Tabuleiro
 import Deck
 
-#Teste de função deck
+#Teste de função deck - Minha dica é não embaralhar as cartas.
 
 #Teste de função embaralhar
 

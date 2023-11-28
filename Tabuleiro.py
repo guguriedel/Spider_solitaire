@@ -1,4 +1,5 @@
 import Partida
+import Modulo_reutilizavel_lista
 import Deck
 
 
@@ -6,10 +7,6 @@ import Deck
 def imprime_tabuleiro(colunas):
     for i, coluna in enumerate(colunas, 0):
         print(f'Coluna {i}: ', end=' ')
-
-        """for carta in coluna[:-1]:
-            print('X' if not coluna[-1]['Face_Up'] else carta['valor'], end = ' ')
-        print('X' if not coluna[-1]['Face_Up'] else coluna[-1]['valor'])"""
 
         for carta in coluna:
 
@@ -24,7 +21,8 @@ def monte(colunas, baralho):
     for coluna in colunas:
         if baralho:
             carta = baralho.pop()
-            coluna.append(carta)
+            Modulo_reutilizavel_lista.adicionar_elemento(coluna, carta)
+            #coluna.append(carta)
             carta['Face_Up'] = True
         #else:
             #print('Baralho não tem mais cartas')
@@ -56,11 +54,13 @@ def coluna_completa(coluna_index, colunas, cont):
     #Cria uma sequencia modelos
     for valor in lista:
         carta = {'valor': valor, 'Face_Up': True}
-        sequencia.append(carta)
+        Modulo_reutilizavel_lista.adicionar_elemento(sequencia, carta)
+        #sequencia.append(carta)
     
     #Remove essa sequencia modelo da lista
     for carta in sequencia:
-        colunas[coluna_index].remove(carta)
+        Modulo_reutilizavel_lista.remover_elemento(colunas[coluna_index], carta)
+        #colunas[coluna_index].remove(carta)
     
     
     return cont+1
