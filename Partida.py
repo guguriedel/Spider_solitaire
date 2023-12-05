@@ -83,6 +83,13 @@ def jogadas(x, baralho, colunas, cont):
     else:
         print('Comando não reconhecido')
 
+#Verifica se todas colunas estão com a ultima carta
+#virada para cima
+    for coluna in colunas:
+        if coluna:
+            if coluna[-1]['Face_Up'] == False:
+                coluna[-1]['Face_Up'] = True
+                
     Tabuleiro.imprime_tabuleiro(colunas)
     return cont
 
